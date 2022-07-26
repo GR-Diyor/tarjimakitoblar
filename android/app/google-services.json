@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "787966802335",
+    "project_id": "tarjimakitoblar",
+    "storage_bucket": "tarjimakitoblar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787966802335:android:09b07f15488749e25d25aa",
+        "android_client_info": {
+          "package_name": "com.FaM.tarjimakitoblar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787966802335-lmo79jiom74bastc9ndboecjtnibmlpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOrUooQvJijMSyo5n2oT7qAU2OPkGl8X8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787966802335-lmo79jiom74bastc9ndboecjtnibmlpd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
