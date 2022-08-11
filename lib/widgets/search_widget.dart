@@ -31,6 +31,7 @@ Widget SearchWidget(BuildContext context){
               searchList("The healing", "assets/images/thehealing.png", "Lindsey Key", (){}),
               searchList("The healing", "assets/images/thehealing.png", "Lindsey Key", (){}),
               searchList("The healing", "assets/images/thehealing.png", "Lindsey Key", (){}),
+              searchList("The healing", "assets/images/thehealing.png", "Lindsey Key", (){}),
             ],
           ),
           //  nothing logo
