@@ -208,6 +208,7 @@ class _Managment_department_pageState extends State<Managment_department_page> {
                                       kMixedColors.add(const Color(0xfffb8457),);
                                       categories.add(CategoryFile(image: _image, name: _titlecontroller.text.trim()));
                                       images.add(_image);
+                                      ommaviybooks.add(ommaviyclass(img: _image!, title: _titlecontroller.text.trim(), author: "author"));
                                       setState(() {
                                         _image=null;
                                         _titlecontroller.text="";

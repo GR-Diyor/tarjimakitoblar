@@ -16,9 +16,9 @@ dependencies:
     sdk: flutter
 
 
-
   cupertino_icons: ^1.0.2
-  url_launcher: 6.0.20
+  http: ^0.13.5
+  url_launcher:
   flutter_slidable: ^0.5.5
   card_swiper: ^2.0.4
   card_loading: ^0.1.5
@@ -32,7 +32,13 @@ dependencies:
   firebase_auth: ^3.3.13
   firebase_storage: ^10.3.0
   cloud_firestore: ^3.1.5
-  firebase_messaging: ^11.4.1
+  firebase_messaging: ^11.4.2
+  slimy_card: ^1.0.4
+  flutter_pdfview: ^1.0.4
+  #path
+  file_picker: ^5.0.0
+  path: ^1.8.1
+  path_provider: ^2.0.10
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +55,7 @@ flutter:
 
 
   assets:
+    - assets/books/
     - assets/images/
 
   fonts:
@@ -59,3 +66,7 @@ flutter:
     - family: Nottingsam_Demo
       fonts:
         - asset: assets/fonts/Nottingsam_Demo.ttf
+
+    - family: BebasNeue-Regular
+      fonts:
+        - asset: assets/fonts/BebasNeue-Regular.ttf

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tarjimakitoblar/utills/theme_shared_prefrences.dart';
 
+import 'admin_pref.dart';
+
 class ThemeModal extends ChangeNotifier{
   late bool _isdark;
   late ThemeSharedPrefrences themeSharedPrefrences;
@@ -19,4 +21,5 @@ class ThemeModal extends ChangeNotifier{
     _isdark=await themeSharedPrefrences.getTheme();
     notifyListeners();
   }
+
 }

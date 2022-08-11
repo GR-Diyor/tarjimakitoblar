@@ -7,7 +7,6 @@ import 'package:tarjimakitoblar/pages/main_page.dart';
 import 'package:tarjimakitoblar/utills/admin_pref.dart';
 import 'package:tarjimakitoblar/utills/thememodal.dart';
 import 'package:tarjimakitoblar/utills/toast.dart';
-import 'package:tarjimakitoblar/utills/usermodal.dart';
 
 class Personal_cabinet extends StatefulWidget {
   const Personal_cabinet({Key? key}) : super(key: key);
@@ -21,7 +20,6 @@ class _Personal_cabinetState extends State<Personal_cabinet> {
   bool changed=false;
   int value=1;
   int correct=0;
-  bool isadmin=false;
   bool info=false;
   int count=0;
   bool check_count=false;
@@ -32,26 +30,19 @@ class _Personal_cabinetState extends State<Personal_cabinet> {
   TextEditingController _emailController=TextEditingController();
   String? name;
   Future check_isAdmin()async{
-    isadmin=true;
     Navigator.of(context).push(
       MaterialPageRoute(builder: (BuildContext context)
     {
-      return Builder(
-          builder: (context) {
-            return Main_page(isadmin: isadmin);
-          });
+      return Main_page(isadmin: true);
     }
     ),);
-    PrefAdmin().setValue(isadmin);
   }
   Future check_isnotAdmin()async{
-    isadmin=false;
     Navigator.of(context).push(
       MaterialPageRoute(builder: (BuildContext context){
-        return Main_page(isadmin: isadmin);
+        return Main_page(isadmin: false);
       }),
     );
-    PrefAdmin().setValue(isadmin);
   }
   @override
   Widget build(BuildContext context) {
@@ -289,13 +280,13 @@ class _Personal_cabinetState extends State<Personal_cabinet> {
                                         child: TextButton(
                                           onPressed: (){
                                             setState(() {
-                                              if(count>0){
-                                                correct==2?check_isAdmin():check_isnotAdmin();
-                                              }else{
-                                                Toasts.fireToast("Foydalanuvchi rolidan foydalanmoqdasiz.");
-                                              }
-                                              changed=false;
-                                            });
+                                                if(correct==2) {
+                                                  check_isAdmin();
+                                                }else{
+                                                  check_isnotAdmin();
+                                                }
+                                                changed=false;
+                                              });
                                           },
                                           child: const Text("Tasdiqlash",style: TextStyle(color:Colors.blue),),
                                           //color: Colors.blue,
@@ -336,7 +327,7 @@ class _Personal_cabinetState extends State<Personal_cabinet> {
                         child: Column(
                           children: [
                             Container(
-                              height: 40,
+                              height: 50,
                               width: MediaQuery.of(context).size.width*0.5,
                               margin: const EdgeInsets.only(top: 10),
                               padding: const EdgeInsets.only(left: 10.0),
@@ -355,7 +346,7 @@ class _Personal_cabinetState extends State<Personal_cabinet> {
                                   ),
                             ),
                             Container(
-                              height: 40,
+                              height: 50,
                               width: MediaQuery.of(context).size.width*0.5,
                               margin: const EdgeInsets.only(top: 10),
                               padding: const EdgeInsets.only(left: 10.0),

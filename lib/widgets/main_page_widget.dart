@@ -1,18 +1,13 @@
-
 import 'dart:io';
-
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scaled_list/scaled_list.dart';
+import 'package:tarjimakitoblar/books/book_about_of_famous.dart';
+import 'package:tarjimakitoblar/books/book_about_of_popular.dart';
+import 'package:tarjimakitoblar/books/book_about_of_public_reading.dart';
 import 'package:tarjimakitoblar/function/reading.dart';
 import 'package:tarjimakitoblar/pages/main_page.dart';
-import 'package:tarjimakitoblar/pages/secondary_pages/about_page.dart';
-import 'package:tarjimakitoblar/pages/secondary_pages/downloads_page.dart';
-import 'package:tarjimakitoblar/pages/secondary_pages/management_department_page.dart';
-import 'package:tarjimakitoblar/pages/secondary_pages/personal_cabinet.dart';
-import 'package:tarjimakitoblar/pages/secondary_pages/setting_page.dart';
-import 'package:tarjimakitoblar/utills/admin_pref.dart';
 import 'package:tarjimakitoblar/utills/thememodal.dart';
 final List categories = [
   Category(image: "assets/images/img5.jpg", name: "Book"),
@@ -37,6 +32,15 @@ final List images = [
   "assets/images/img4.jpg",
   "assets/images/img5.jpg",
 ];
+final List ommaviybooks=[
+  Public_list(image:"assets/images/im1.webp", title: "Sarlavha", author: "Muallif"),
+  Public_list(image:"assets/images/img2.webp", title:"Sarlavha", author:"Muallif"),
+  Public_list(image:"assets/images/img3.webp", title:"Sarlavha", author:"Muallif"),
+  Public_list(image:"assets/images/img4.jpg", title:"Sarlavha", author:"Muallif"),
+  Public_list(image:"assets/images/img5.jpg", title:"Sarlavha", author:"Muallif"),
+  Public_list(image:"assets/images/img6.jpg", title:"Sarlavha", author:"Muallif"),
+];
+GlobalKey _key=GlobalKey();
 Widget Main_page_widget(BuildContext context){
   return  Consumer(builder: (context, ThemeModal themeModal, child) {
     return SafeArea(
@@ -87,51 +91,70 @@ Widget Main_page_widget(BuildContext context){
                         children: <Widget>[
                           Container(
                             height: 180,
-                            child: Center(
-                              child: Swiper(
-                                itemBuilder:
-                                    (context, index) {
-                                  return index<6?Image.asset(
-                                    images[index],
-                                  ):Image.file(images[index]);
-                                },
-                                autoplay: true,
-                                itemCount: images.length,
-                                pagination:
-                                SwiperPagination(
-                                    margin:
-                                    EdgeInsets.zero,
-                                    builder: SwiperCustomPagination(
-                                        builder:
-                                            (context,
-                                            config) {
-                                          return ConstrainedBox(
-                                            constraints:
-                                            const BoxConstraints
-                                                .expand(
-                                                height:
-                                                50.0),
-                                            child: Row(
-                                              children: <Widget>[
-                                                // Text(
-                                                //   '${titles[config.activeIndex]} ${config.activeIndex + 1}/${config.itemCount}',
-                                                //   style: const TextStyle(fontSize: 20.0),
-                                                // ),
-                                                Expanded(
-                                                  child:
-                                                  Align(
-                                                    alignment:
-                                                    Alignment.bottomCenter,
-                                                    child: const DotSwiperPaginationBuilder(color: Colors.white, activeColor: Colors.green, size: 10.0, activeSize: 13.0).build(
-                                                        context,
-                                                        config),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          );
-                                        })),
-                                // control: const SwiperControl(color: Colors.blue),
+                            child: Hero(
+                              tag: "famous",
+                              transitionOnUserGestures: true,
+                              key: _key,
+                              child: Center(
+                                child: Swiper(
+                                  itemBuilder:
+                                      (context, index) {
+                                    return index<6?GestureDetector(
+                                      onTap: (){
+                                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                          return Book_about(index: index,);
+                                        }));
+                                      },
+                                      child: Image.asset(
+                                        images[index],
+                                      ),
+                                    ):GestureDetector(
+                                        onTap: (){
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                        return Book_about(index: index,);
+                                      }));
+                                    },
+                                        child:Image.file(images[index]),
+                                    );
+                                  },
+                                  autoplay: true,
+                                  itemCount: images.length,
+                                  pagination:
+                                  SwiperPagination(
+                                      margin:
+                                      EdgeInsets.zero,
+                                      builder: SwiperCustomPagination(
+                                          builder:
+                                              (context,
+                                              config) {
+                                            return ConstrainedBox(
+                                              constraints:
+                                              const BoxConstraints
+                                                  .expand(
+                                                  height:
+                                                  50.0),
+                                              child: Row(
+                                                children: <Widget>[
+                                                  // Text(
+                                                  //   '${titles[config.activeIndex]} ${config.activeIndex + 1}/${config.itemCount}',
+                                                  //   style: const TextStyle(fontSize: 20.0),
+                                                  // ),
+                                                  Expanded(
+                                                    child:
+                                                    Align(
+                                                      alignment:
+                                                      Alignment.bottomCenter,
+                                                      child: const DotSwiperPaginationBuilder(color: Colors.white, activeColor: Colors.green, size: 10.0, activeSize: 13.0).build(
+                                                          context,
+                                                          config),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          })),
+                                  // control: const SwiperControl(color: Colors.blue),
+                                ),
                               ),
                             ),
                           )
@@ -181,50 +204,64 @@ Widget Main_page_widget(BuildContext context){
                           categories[index];
                           File? file;
                           file=index>4?categories[index].image:null;
-                          return Column(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  padding:
-                                  const EdgeInsets.all(15),
-                                  height:
-                                  selectedIndex == index
-                                      ? 100
-                                      : 80,
-                                  child: index<5?Image.asset(
-                                    category.image,
-                                    fit: BoxFit.cover,
-                                  ): Image.file(
-                                    file!,
-                                    fit: BoxFit.cover,
+                          return
+                            Column(
+                              // mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap:(){
+                                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                        return Book_popular(index: index,);
+                                      },
+                                      ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      transitionOnUserGestures: true,
+                                      tag: "popular",
+                                      child: Container(
+                                        padding:
+                                        const EdgeInsets.all(15),
+                                        height:
+                                        selectedIndex == index
+                                            ? 100
+                                            : 80,
+                                        child: index<5?Image.asset(
+                                          category.image,
+                                          fit: BoxFit.cover,
+                                        ): Image.file(
+                                          file!,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 15),
-                              Align(
-                                alignment:
-                                Alignment.bottomCenter,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Text(
-                                    category.name,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize:
-                                        selectedIndex ==
-                                            index
-                                            ? 25
-                                            : 20),
-                                    softWrap: true,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
+                                const SizedBox(height: 15),
+                                Align(
+                                  alignment:
+                                  Alignment.bottomCenter,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(
+                                      category.name,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize:
+                                          selectedIndex ==
+                                              index
+                                              ? 25
+                                              : 20),
+                                      softWrap: true,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 3),
-                            ],
-                          );
+                                const SizedBox(height: 3),
+                              ],
+                            );
                         },
                       ),
                     ),
@@ -258,168 +295,101 @@ Widget Main_page_widget(BuildContext context){
                           BorderRadius.circular(20),
                           side:  BorderSide(color:themeModal.isdark?Colors.white12:Colors.black12,style: BorderStyle.solid,width: 1.5),
                         ),
-                        child:Column(
-                          children: [
-                            ommaviy("assets/images/im1.webp", "Sarlavha", "Muallif", "kitob haqida"),
-                            ommaviy("assets/images/img2.webp", "Sarlavha", "Muallif", "kitob haqida"),
-                            ommaviy("assets/images/img3.webp", "Sarlavha", "Muallif", "kitob haqida"),
-                            ommaviy("assets/images/img4.jpg", "Sarlavha", "Muallif", "kitob haqida"),
-                            ommaviy("assets/images/img5.jpg", "Sarlavha", "Muallif", "kitob haqida"),
-                            ommaviy("assets/images/img6.jpg", "Sarlavha", "Muallif", "kitob haqida"),
-                          ],
+                        child:
+                            ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: ommaviybooks.length,
+                              physics: const BouncingScrollPhysics(),
+                              itemBuilder: (BuildContext context, int index){
+                                return GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                      return Book_public(index: index,);
+                                    },
+                                    ),
+                                    );
+                                  },
+                                  child: Container(
+                                   child: index<=5?ommaviybooks[index]
+                                      :Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  margin: const EdgeInsets.only(
+                                  bottom: 10, left: 5),
+                                  child: Row(
+                                  children: [
+                                  Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                  padding:
+                                  const EdgeInsets
+                                      .all(10),
+                                  height: 180,
+                                  child: Align(
+                                  alignment:
+                                  Alignment
+                                      .topLeft,
+                                  child:
+                                  Hero(
+                                      tag: "public",
+                                      child: Image.file(ommaviybooks[index].img)),
+                                  ),
+                                  ),
+                                  ),
+                                  Expanded(
+                                  flex: 2,
+                                  child: Column(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment
+                                      .start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment
+                                      .start,
+                                  children:  [
+                                  Padding(
+                                  padding:
+                                  const EdgeInsets
+                                      .all(8.0),
+                                  child: Text(
+                                    ommaviybooks[index].title,
+                                  style: TextStyle(
+                                  color: themeModal.isdark?Colors.white.withOpacity(.9):Colors.black,
+                                  fontSize:
+                                  23,
+                                  fontWeight:
+                                  FontWeight
+                                      .bold),
+                                  ),
+                                  ),
+                                  Padding(
+                                  padding:
+                                  const EdgeInsets
+                                      .all(8.0),
+                                  child: Text(
+                                    ommaviybooks[index].author,
+                                  style: TextStyle(
+                                  color: themeModal.isdark?Colors.white.withOpacity(.9):Colors.black,
+                                  fontSize:
+                                  14.5,
+                                  fontWeight:
+                                  FontWeight
+                                      .bold),
+                                  ),
+                                  ),
+                                  ],
+                                  ),
+                                  ),
+                                  ],
+                                  ),
+                                  ),
+                                  ),
+                                );
+                                },
+                                ),
+
                         ),
-                      ),
                     ),
                   ],
-                ),
-                // bestseller title
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
-                    border: Border.all(
-                        width: 2, color: Colors.green),
-                  ),
-                  height: 40,
-                  child: const Center(
-                    child: Text(
-                      "TAVSIYA ETILADI",
-                      style: TextStyle(
-                          fontSize: 19,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                // book trend or bestseller
-                Container(
-                  height: 150,
-                  margin: const EdgeInsets.only(left: 5),
-                  child: ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      GestureDetector(
-                        // onTap: () => book_navigate()
-                        //     .About_thehealing(context),
-                        child: Container(
-                          width: 150,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius:
-                            BorderRadius.circular(25),
-                          ),
-                          child: Hero(
-                              tag: 'thehealing',
-                              child: Image.asset(
-                                "assets/images/thehealing.png",
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                        // onTap: () => book_navigate()
-                        //     .About_wherethe(context),
-                        child: Container(
-                          width: 150,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius:
-                            BorderRadius.circular(25),
-                          ),
-                          child: Hero(
-                              tag: "wherethe",
-                              child: Image.asset(
-                                "assets/images/wherethe.jpg",
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.yellow,
-                          borderRadius:
-                          BorderRadius.circular(25),
-                        ),
-                        child: Image.asset(
-                          "assets/images/sarahwinman.jpg",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius:
-                          BorderRadius.circular(25),
-                        ),
-                        child: Image.asset(
-                          "assets/images/theshack.jpg",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.brown,
-                          borderRadius:
-                          BorderRadius.circular(25),
-                        ),
-                        child: Image.asset(
-                          "assets/images/roadatlas.jpg",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius:
-                          BorderRadius.circular(25),
-                        ),
-                        child: Image.asset(
-                          "assets/images/longwayhome.jpg",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Container(
-                        width: 150,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.teal,
-                          borderRadius:
-                          BorderRadius.circular(25),
-                        ),
-                        child: Image.asset(
-                          "assets/images/noonesaw.jpg",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ],
             ),
@@ -432,202 +402,3 @@ Widget Main_page_widget(BuildContext context){
 }
 
 
-Widget drawer_main(BuildContext context,[bool isAdmin=false]){
-  return  SafeArea(
-    child: Container(
-      width: MediaQuery.of(context).size.width*0.64,
-      child: ListView(
-        padding:const EdgeInsets.only(left: 8.0,right: 8.0,bottom: 8.0,top: 20.0),
-        children: [
-          Card(
-            borderOnForeground: true,
-            elevation: 3,
-            shadowColor: Colors.white,
-            semanticContainer: true,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            color: Colors.white,
-            child: Container(
-              width: MediaQuery.of(context).size.width*0.6,
-              padding: const EdgeInsets.only(left: 12, right: 12, top: 10,bottom: 5),
-              child: Column(
-                children: [
-                  Image.asset(
-                    "assets/images/logo.png",
-                    height: 100.0,
-                    width: MediaQuery.of(context).size.width*0.5,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "Tarjima kitoblar",
-                    style: TextStyle(color: Colors.black87, fontSize: 15),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "Version: 1.0.1",
-                    style: TextStyle(
-                        color: Colors.black12,
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Column(
-            children: [
-              isAdmin?Container(
-                margin: const EdgeInsets.only(top: 10),
-                child: GestureDetector(
-                  onTap: (){
-                    Navigator.pushNamed(context,Managment_department_page.id);
-                  },
-                  child: Card(
-                    borderOnForeground: true,
-                    elevation: 3,
-                    shadowColor: Colors.white,
-                    semanticContainer: true,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    color: Colors.white,
-                    child:Container(
-                      padding: const EdgeInsets.only(left: 10),
-                      height: 40,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          Icon(Icons.manage_accounts_rounded,color: Colors.black54,),
-                          SizedBox(width: 5),
-                          Text("Boshqaruv bo'limi",style: TextStyle(color: Colors.black54,fontSize: 14,fontWeight: FontWeight.bold),),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ):const SizedBox.shrink(),
-              const SizedBox(
-                height: 10,
-              ),
-              GestureDetector(
-                onTap: (){
-                  Navigator.pushNamed(context, Personal_cabinet.id);
-                },
-                child: Card(
-                  borderOnForeground: true,
-                  elevation: 3,
-                  shadowColor: Colors.white,
-                  semanticContainer: true,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  color: Colors.white,
-                  child:Container(
-                    padding:const EdgeInsets.only(left: 10),
-                    height: 40,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.account_box,color: Colors.black54,),
-                        SizedBox(width: 5),
-                        Text("Shaxsiy kobinet",style: TextStyle(color: Colors.black54,fontSize: 14,fontWeight: FontWeight.bold),),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              GestureDetector(
-                onTap: (){
-                  Navigator.pushNamed(context, Downloads_page.id);
-                },
-                child:  Card(
-                  borderOnForeground: true,
-                  elevation: 3,
-                  shadowColor: Colors.white,
-                  semanticContainer: true,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  color: Colors.white,
-                  child:Container(
-                    padding: const EdgeInsets.only(left: 10),
-                    height: 40,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.download,color: Colors.black54,),
-                        SizedBox(width: 5),
-                        Text("Yuklanganlar",style: TextStyle(color: Colors.black54,fontSize: 14,fontWeight: FontWeight.bold),),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              GestureDetector(
-                onTap: (){
-                  Navigator.pushNamed(context, Setting_page.id);
-                },
-                child: Card(
-                  borderOnForeground: true,
-                  elevation: 3,
-                  shadowColor: Colors.white,
-                  semanticContainer: true,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  color: Colors.white,
-                  child:Container(
-                    padding: const EdgeInsets.only(left: 10),
-                    height: 40,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.app_settings_alt_outlined,color: Colors.black54,),
-                        SizedBox(width: 5),
-                        Text("Sozlamalar",style: TextStyle(color: Colors.black54,fontSize: 14,fontWeight: FontWeight.bold),),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, About_page.id);
-                },
-                child: Card(
-                  borderOnForeground: true,
-                  elevation: 3,
-                  shadowColor: Colors.white,
-                  semanticContainer: true,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  color: Colors.white,
-                  child:Container(
-                    padding: const EdgeInsets.only(left: 10),
-                    height: 40,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Icon(Icons.perm_device_info_rounded,color: Colors.black54,),
-                        SizedBox(width: 5),
-                        Text("Dastur haqida",style: TextStyle(color: Colors.black54,fontSize: 14,fontWeight: FontWeight.bold),),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
-}

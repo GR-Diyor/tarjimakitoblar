@@ -3,12 +3,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tarjimakitoblar/widgets/main_drawer.dart';
 import 'package:tarjimakitoblar/widgets/main_loading.dart';
 import 'package:tarjimakitoblar/widgets/main_page_widget.dart';
 import 'package:tarjimakitoblar/widgets/search_widget.dart';
 
 class Main_page extends StatefulWidget {
-  bool isadmin;
+  final bool isadmin;
   Main_page({required this.isadmin,});
   static const String id="Main_page";
 
@@ -87,7 +88,6 @@ class _Main_pageState extends State<Main_page> {
                     Icons.search_rounded,
                     color: Colors.white,
                   );
-                  print("search active");
                 }else{
                   cancel();
                 }

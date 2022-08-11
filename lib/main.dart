@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tarjimakitoblar/books/book_about_of_famous.dart';
+import 'package:tarjimakitoblar/books/book_about_of_popular.dart';
+import 'package:tarjimakitoblar/books/book_about_of_public_reading.dart';
 import 'package:tarjimakitoblar/pages/main_page.dart';
 import 'package:tarjimakitoblar/pages/secondary_pages/about_page.dart';
 import 'package:tarjimakitoblar/pages/secondary_pages/downloads_page.dart';
@@ -10,6 +13,7 @@ import 'package:tarjimakitoblar/pages/secondary_pages/setting_page.dart';
 import 'package:tarjimakitoblar/pages/sign_in_page.dart';
 import 'package:tarjimakitoblar/pages/sign_up_page.dart';
 import 'package:tarjimakitoblar/pages/splash_page.dart';
+import 'package:tarjimakitoblar/utills/admin_model.dart';
 import 'package:tarjimakitoblar/utills/admin_pref.dart';
 import 'package:tarjimakitoblar/utills/thememodal.dart';
 
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => ThemeModal(),
-      child: Consumer(builder: (context, ThemeModal themeModal, child){
+      child: Consumer(builder: (context ,ThemeModal themeModal, child){
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Tarjima kitoblar',
@@ -43,10 +47,13 @@ class MyApp extends StatelessWidget {
             Downloads_page.id:(context)=>const Downloads_page(),
             Setting_page.id:(context)=>const Setting_page(),
             About_page.id:(context)=>const About_page(),
+            //sells
+            Book_about.id:(context)=>const Book_about(index: 0,),
+            Book_popular.id:(context)=>const Book_popular(index: 0),
+            Book_public.id:(context)=>const Book_public(index: 0),
           },
         );
       }),
     );
   }
-
 }

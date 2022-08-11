@@ -514,6 +514,7 @@ class _Sign_up_pageState extends State<Sign_up_page> {
                                                             20),
                                                   ),
                                                   child: TextButton(
+                                                    autofocus: false,
                                                     onPressed: () {
                                                       setState(() {
                                                         if (isnext ||

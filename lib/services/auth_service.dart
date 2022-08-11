@@ -1,6 +1,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tarjimakitoblar/pages/sign_in_page.dart';
+import 'package:tarjimakitoblar/utills/firebase_pref.dart';
 
 
 class AuthService {
@@ -27,5 +29,16 @@ class AuthService {
       print('Sign UP ***** => $error');
       return null;
     }
+  }
+
+
+
+  static void signOutUser(BuildContext context){
+    _auth.signOut();
+    Prefs.removeUserId().then((value)
+    {
+      Navigator.pushReplacementNamed(context,Sign_in_page.id);
+    }
+    );
   }
   }
