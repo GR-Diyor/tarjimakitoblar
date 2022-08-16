@@ -40,7 +40,6 @@ final List ommaviybooks=[
   Public_list(image:"assets/images/img5.jpg", title:"Sarlavha", author:"Muallif"),
   Public_list(image:"assets/images/img6.jpg", title:"Sarlavha", author:"Muallif"),
 ];
-GlobalKey _key=GlobalKey();
 Widget Main_page_widget(BuildContext context){
   return  Consumer(builder: (context, ThemeModal themeModal, child) {
     return SafeArea(
@@ -92,9 +91,8 @@ Widget Main_page_widget(BuildContext context){
                           Container(
                             height: 180,
                             child: Hero(
-                              tag: "famous",
+                              tag: const Text("famous"),
                               transitionOnUserGestures: true,
-                              key: _key,
                               child: Center(
                                 child: Swiper(
                                   itemBuilder:
@@ -219,7 +217,7 @@ Widget Main_page_widget(BuildContext context){
                                     },
                                     child: Hero(
                                       transitionOnUserGestures: true,
-                                      tag: "popular",
+                                      tag: 'popular',
                                       child: Container(
                                         padding:
                                         const EdgeInsets.all(15),

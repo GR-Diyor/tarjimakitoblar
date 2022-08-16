@@ -77,11 +77,11 @@ class _Sign_in_pageState extends State<Sign_in_page> {
                       height: MediaQuery.of(context).size.height,
                       child: const Center(
                         child: Text(
-                          "Sign in",
+                          "Tizimga kirish",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 40,
-                              fontFamily: "Nottingsam_Demo"),
+                              fontFamily: "BebasNeue-Regular"),
                         ),
                       ),
                     ),
@@ -126,7 +126,7 @@ class _Sign_in_pageState extends State<Sign_in_page> {
                                       keyboardType: TextInputType.emailAddress,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: "E-mail",
+                                        hintText: "E-pochta",
                                         hintStyle: TextStyle(
                                             color: Colors.black12,
                                             fontSize: 19),
@@ -161,7 +161,7 @@ class _Sign_in_pageState extends State<Sign_in_page> {
                                           .visiblePassword,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: "Password",
+                                        hintText: "Parol",
                                         hintStyle: TextStyle(
                                             color: Colors.black12,
                                             fontSize: 19),
@@ -182,15 +182,6 @@ class _Sign_in_pageState extends State<Sign_in_page> {
                                           mainAxisAlignment: MainAxisAlignment
                                               .center,
                                           children: [
-                                            const Text(
-                                              "Don`t have an account ?",
-                                              style: TextStyle(
-                                                  color: Colors.black54,
-                                                  fontSize: 14),
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
                                             GestureDetector(
                                                 onTap: () {
                                                   Navigator
@@ -198,7 +189,7 @@ class _Sign_in_pageState extends State<Sign_in_page> {
                                                       context, Sign_up_page.id);
                                                 },
                                                 child: const Text(
-                                                  "Sign up",
+                                                  "Ro'yxatdan o'tish",
                                                   style: TextStyle(
                                                       color: Colors.blue,
                                                       fontSize: 14),
@@ -234,7 +225,7 @@ class _Sign_in_pageState extends State<Sign_in_page> {
                                             dosign_in();
                                           },
                                           child: const Text(
-                                            "Enter",
+                                            "Kirish",
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 16),

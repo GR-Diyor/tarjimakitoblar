@@ -27,7 +27,6 @@ class _Sign_up_pageState extends State<Sign_up_page> {
   int groupvalue = 0;
   bool isnext = false;
   bool isloading = false;
-  String buttoncation = "Next";
   Widget buildSegment(String text) => Align(
         alignment: Alignment.topCenter,
         child: SizedBox(
@@ -109,11 +108,11 @@ class _Sign_up_pageState extends State<Sign_up_page> {
                       height: MediaQuery.of(context).size.height,
                       child: const Center(
                         child: Text(
-                          "Sign up",
+                          "Ro'yxatdan o'tish",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 40,
-                              fontFamily: "Nottingsam_Demo"),
+                              fontFamily: "BebasNeue-Regular"),
                         ),
                       ),
                     ),
@@ -132,420 +131,209 @@ class _Sign_up_pageState extends State<Sign_up_page> {
                       ),
                       child: Stack(
                         children: [
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 30, right: 30, top: 15),
-                            child: CupertinoSegmentedControl<int>(
-                              groupValue: isnext ? 1 : groupvalue,
-                              selectedColor: Colors.blue.withOpacity(0.6),
-                              unselectedColor: Colors.black12,
-                              borderColor: Colors.black12,
-                              pressedColor: Colors.blue.withOpacity(0.2),
-                              children: {
-                                0: buildSegment("Step 1"),
-                                1: buildSegment("Step 2"),
-                              },
-                              onValueChanged: (groupvalue) {},
-                            ),
-                          ),
                           // textfield groups
                           SingleChildScrollView(
                             child: Container(
-                              child: isnext
-                                  ? Column(
-                                      children: [
-                                        const SizedBox(
-                                          height: 60,
+                              child:Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  // Textfield . name => fullname
+                                  Container(
+                                    height: 60,
+                                    margin: const EdgeInsets.only(
+                                        left: 20, right: 20, top: 60),
+                                    padding:
+                                        const EdgeInsets.only(left: 20),
+                                    width: MediaQuery.of(context)
+                                        .size
+                                        .width,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(30),
+                                      color: Colors.white70,
+                                      border: Border.all(
+                                          color: Colors.blueGrey,
+                                          width: 2),
+                                    ),
+                                    child: Center(
+                                      child: TextField(
+                                        controller: fullname_controller,
+                                        keyboardType:
+                                            TextInputType.text,
+                                        decoration:
+                                            const InputDecoration(
+                                          hintText: "Ism",
+                                          hintStyle: TextStyle(
+                                              color: Colors.black26,
+                                              fontSize: 19),
+                                          border: InputBorder.none,
                                         ),
-                                        Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          child: const Center(
-                                            child: Text(
-                                              "+998 90 583 13 82",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        const Text(
-                                          "An sms code was sent to this mobile number!",
-                                          style: TextStyle(
-                                              color: Colors.blue, fontSize: 11),
-                                        ),
-                                        // Text("Ushbu mobile raqamiga sms kod yuborildi!",style: TextStyle(color: Colors.blue,fontSize: 12),),
-                                        const SizedBox(
-                                          height: 15,
-                                        ),
-                                        // code enter button
-                                        Container(
-                                          margin: EdgeInsets.only(top: 50),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              const Text(
-                                                "05:00",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Container(
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                margin: const EdgeInsets.only(
-                                                    left: 20,
-                                                    right: 20,
-                                                    top: 10),
-                                                padding: const EdgeInsets.only(
-                                                    left: 20),
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white70,
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                  border: Border.all(
-                                                      width: 2,
-                                                      color: Colors.blueGrey),
-                                                ),
-                                                child: Center(
-                                                  child: TextField(
-                                                    controller: code_controller,
-                                                    keyboardType: TextInputType
-                                                        .visiblePassword,
-                                                    decoration:
-                                                        const InputDecoration(
-                                                      hintText: "Code",
-                                                      hintStyle: TextStyle(
-                                                          color: Colors.black26,
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                      border: InputBorder.none,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  //sign up button . name => next
-                                                  Container(
-                                                    height: 50,
-                                                    width: 140,
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            bottom: 20,
-                                                            top: 60),
-                                                    decoration: BoxDecoration(
-                                                      gradient:
-                                                          const LinearGradient(
-                                                        begin:
-                                                            Alignment.topLeft,
-                                                        colors: [
-                                                          Color(0xffe52efa),
-                                                          Color(0xda8457ee),
-                                                          Color(0xe66c4df5),
-                                                          Color(0xff72CCD4),
-                                                          Color(0xff71A5D7),
-                                                        ],
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                    ),
-                                                    child: FlatButton(
-                                                      color: Colors.transparent,
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          if (isnext) {
-                                                            // isnext=false;
-                                                            // buttoncation="Next";
-                                                          } else {
-                                                            isnext = true;
-                                                            buttoncation =
-                                                                "Complete";
-                                                          }
-                                                        });
-                                                        dosign_up();
-                                                      },
-                                                      child: Text(
-                                                        buttoncation,
-                                                        style: const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 16),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : SingleChildScrollView(
-                                      child: Column(
-                                        children: [
-                                          // Textfield . name => fullname
-                                          Container(
-                                            height: 60,
-                                            margin: const EdgeInsets.only(
-                                                left: 20, right: 20, top: 60),
-                                            padding:
-                                                const EdgeInsets.only(left: 20),
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                              color: Colors.white70,
-                                              border: Border.all(
-                                                  color: Colors.blueGrey,
-                                                  width: 2),
-                                            ),
-                                            child: Center(
-                                              child: TextField(
-                                                controller: fullname_controller,
-                                                keyboardType:
-                                                    TextInputType.text,
-                                                decoration:
-                                                    const InputDecoration(
-                                                  hintText: "Fullname",
-                                                  hintStyle: TextStyle(
-                                                      color: Colors.black26,
-                                                      fontSize: 19),
-                                                  border: InputBorder.none,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          // textfield . name => phone number
-                                          Container(
-                                            height: 60,
-                                            margin: const EdgeInsets.only(
-                                                left: 20, right: 20),
-                                            padding:
-                                                const EdgeInsets.only(left: 20),
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                              color: Colors.white70,
-                                              border: Border.all(
-                                                  color: Colors.blueGrey,
-                                                  width: 2),
-                                            ),
-                                            child: Center(
-                                              child: TextField(
-                                                controller:
-                                                    phone_number_controller,
-                                                keyboardType:
-                                                    TextInputType.phone,
-                                                decoration:
-                                                    const InputDecoration(
-                                                  hintText: "Phone number",
-                                                  hintStyle: TextStyle(
-                                                      color: Colors.black26,
-                                                      fontSize: 19),
-                                                  border: InputBorder.none,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          // textfield . name => email
-                                          Container(
-                                            height: 60,
-                                            margin: const EdgeInsets.only(
-                                                left: 20, right: 20),
-                                            padding:
-                                                const EdgeInsets.only(left: 20),
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                              color: Colors.white70,
-                                              border: Border.all(
-                                                  color: Colors.blueGrey,
-                                                  width: 2),
-                                            ),
-                                            child: Center(
-                                              child: TextField(
-                                                controller: email_controller,
-                                                keyboardType:
-                                                    TextInputType.emailAddress,
-                                                decoration:
-                                                    const InputDecoration(
-                                                  hintText: "E-mail",
-                                                  hintStyle: TextStyle(
-                                                      color: Colors.black26,
-                                                      fontSize: 19),
-                                                  border: InputBorder.none,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          // textfield . name => password
-                                          Container(
-                                            height: 60,
-                                            margin: const EdgeInsets.only(
-                                                left: 20, right: 20),
-                                            padding:
-                                                const EdgeInsets.only(left: 20),
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                              color: Colors.white70,
-                                              border: Border.all(
-                                                  color: Colors.blueGrey,
-                                                  width: 2),
-                                            ),
-                                            child: Center(
-                                              child: TextField(
-                                                controller: password_controller,
-                                                keyboardType: TextInputType
-                                                    .visiblePassword,
-                                                decoration:
-                                                    const InputDecoration(
-                                                  hintText: "Password",
-                                                  hintStyle: TextStyle(
-                                                      color: Colors.black26,
-                                                      fontSize: 19),
-                                                  border: InputBorder.none,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          //footer
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              // navigate sign in page
-                                              Align(
-                                                alignment:
-                                                    Alignment.bottomCenter,
-                                                child: Container(
-                                                  margin: const EdgeInsets.only(
-                                                      bottom: 30, top: 30),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      const Text(
-                                                        "Already have an account ?",
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.black54,
-                                                            fontSize: 14),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      GestureDetector(
-                                                          onTap: () {
-                                                            Navigator
-                                                                .pushReplacementNamed(
-                                                                    context,
-                                                                    Sign_in_page
-                                                                        .id);
-                                                          },
-                                                          child: const Text(
-                                                            "Sign in",
-                                                            style: TextStyle(
-                                                                color:
-                                                                    Colors.blue,
-                                                                fontSize: 14),
-                                                          )),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              //sign up button . name => next
-                                              Align(
-                                                alignment:
-                                                    Alignment.bottomCenter,
-                                                child: Container(
-                                                  height: 50,
-                                                  width: 140,
-                                                  margin: const EdgeInsets.only(
-                                                      bottom: 20),
-                                                  decoration: BoxDecoration(
-                                                    gradient:
-                                                        const LinearGradient(
-                                                      begin: Alignment.topLeft,
-                                                      colors: [
-                                                        Color(0xffe52efa),
-                                                        Color(0xda8457ee),
-                                                        Color(0xe66c4df5),
-                                                        Color(0xff72CCD4),
-                                                        Color(0xff71A5D7),
-                                                      ],
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                  ),
-                                                  child: TextButton(
-                                                    autofocus: false,
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        if (isnext ||
-                                                            email_controller.text !=
-                                                                null &&
-                                                            fullname_controller.text !=
-                                                                null &&
-                                                            password_controller.text !=
-                                                                null &&
-                                                            phone_number_controller.text !=
-                                                                null) {
-                                                          isnext = true;
-                                                          buttoncation =
-                                                              "Complete";
-                                                        }
-                                                      });
-                                                    },
-                                                    child: Text(
-                                                      buttoncation,
-                                                      style: const TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 16),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
                                       ),
                                     ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  // textfield . name => email
+                                  Container(
+                                    height: 60,
+                                    margin: const EdgeInsets.only(
+                                        left: 20, right: 20),
+                                    padding:
+                                        const EdgeInsets.only(left: 20),
+                                    width: MediaQuery.of(context)
+                                        .size
+                                        .width,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(30),
+                                      color: Colors.white70,
+                                      border: Border.all(
+                                          color: Colors.blueGrey,
+                                          width: 2),
+                                    ),
+                                    child: Center(
+                                      child: TextField(
+                                        controller: email_controller,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        decoration:
+                                            const InputDecoration(
+                                          hintText: "E-pochta",
+                                          hintStyle: TextStyle(
+                                              color: Colors.black26,
+                                              fontSize: 19),
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  // textfield . name => password
+                                  Container(
+                                    height: 60,
+                                    margin: const EdgeInsets.only(
+                                        left: 20, right: 20),
+                                    padding:
+                                        const EdgeInsets.only(left: 20),
+                                    width: MediaQuery.of(context)
+                                        .size
+                                        .width,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(30),
+                                      color: Colors.white70,
+                                      border: Border.all(
+                                          color: Colors.blueGrey,
+                                          width: 2),
+                                    ),
+                                    child: Center(
+                                      child: TextField(
+                                        controller: password_controller,
+                                        keyboardType: TextInputType
+                                            .visiblePassword,
+                                        decoration:
+                                            const InputDecoration(
+                                          hintText: "Parol",
+                                          hintStyle: TextStyle(
+                                              color: Colors.black26,
+                                              fontSize: 19),
+                                          border: InputBorder.none,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  //footer
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.end,
+                                    children: [
+                                      // navigate sign in page
+                                      Align(
+                                        alignment:
+                                            Alignment.bottomCenter,
+                                        child: Container(
+                                          margin: const EdgeInsets.only(
+                                              bottom: 30, top: 30),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .center,
+                                            children: [
+                                              const Text(
+                                                "Ro'yxatdan o'tmaganmisiz?",
+                                                style: TextStyle(
+                                                    color:
+                                                        Colors.black54,
+                                                    fontSize: 14),
+                                              ),
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
+                                              GestureDetector(
+                                                  onTap: () {
+                                                    Navigator
+                                                        .pushReplacementNamed(
+                                                            context,
+                                                            Sign_in_page
+                                                                .id);
+                                                  },
+                                                  child: const Text(
+                                                    "Tizimga kirish",
+                                                    style: TextStyle(
+                                                        color:
+                                                            Colors.blue,
+                                                        fontSize: 14),
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      //sign up button . name => next
+                                      GestureDetector(
+                                        onTap: (){},
+                                        child: Align(
+                                          alignment:
+                                              Alignment.bottomCenter,
+                                          child: Container(
+                                            height: 50,
+                                            width: 140,
+                                            padding: EdgeInsets.zero,
+                                            margin: const EdgeInsets.only(
+                                                bottom: 20),
+                                            decoration: BoxDecoration(
+                                              gradient:
+                                                  const LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                colors: [
+                                                  Color(0xffe52efa),
+                                                  Color(0xda8457ee),
+                                                  Color(0xe66c4df5),
+                                                  Color(0xff72CCD4),
+                                                  Color(0xff71A5D7),
+                                                ],
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      20),
+                                            ),
+                                            child: const Center(
+                                              child: Text(
+                                                  "Ro'yxatdan o'tish",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15),
+                                                ),
+                                            ),
+                                            ),
+                                          ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],

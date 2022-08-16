@@ -11,7 +11,6 @@ class Book_popular extends StatefulWidget {
   @override
   State<Book_popular> createState() => _Book_popularState();
 }
- GlobalKey _key=GlobalKey();
 class _Book_popularState extends State<Book_popular> {
   @override
   Widget build(BuildContext context) {
@@ -54,9 +53,8 @@ class _Book_popularState extends State<Book_popular> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Hero(
-                            tag: "popular",
+                            tag: 'popular',
                             transitionOnUserGestures: true,
-                            key: _key,
                             child: widget.index<5?Image.asset(categories[widget.index].image,fit: BoxFit.contain,):Image.file(categories[widget.index].image,fit: BoxFit.contain,)
                           ),
                           const SizedBox(height: 20,),
